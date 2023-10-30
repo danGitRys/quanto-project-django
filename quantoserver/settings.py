@@ -84,13 +84,14 @@ WSGI_APPLICATION = "quantoserver.wsgi.application"
 DATABASES = {
     "default": {
         # TODO Change ENGINE and NAME, add USER, PASSWORD, HOST and PORT
-        #"ENGINE": "mssql",
-        #"NAME": "",
-        #"USER": "<database-user>",
-        #"PASSWORD": "<database-password>",
-        # "server/instance" format
-        #"HOST": "<database-host>",
-        #"PORT": "<database-port>",
+        "ENGINE": "mssql",
+        "NAME": "Test",
+        "USER": "sa",
+        "PASSWORD": "Hans1001",
+        "HOST": "localhost",
+        "PORT": "1433",
+         "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", 
+        },
     }
 }
 
