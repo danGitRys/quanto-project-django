@@ -85,7 +85,7 @@ DATABASES = {
     "default": {
         # TODO Change ENGINE and NAME, add USER, PASSWORD, HOST and PORT
         "ENGINE": "mssql",
-        "NAME": "Test",
+        "NAME": "quanto",
         "USER": "sa",
         "PASSWORD": "Hans1001",
         "HOST": "localhost",
