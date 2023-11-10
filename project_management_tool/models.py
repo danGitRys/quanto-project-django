@@ -9,4 +9,30 @@ from django.db import models
 class ExternalTable(models.Model):
     #field1 = models.CharField(max_length=50)
     projectName = models.CharField(max_length=50)
+
+class Assignment(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    fk_project = models.BigIntegerField()
+    fk_employee = models.BigIntegerField()
+    role = models.TextField()
+    sysStartTime = models.TextField()
+    sysEndTime = models.TextField()
+
+    class Meta:
+        db_table = 'assignment'
+
+class Employee(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    emp_id = models.BigIntegerField()
+    forename = models.TextField(max_length=50)
+    surname = models.TextField(max_length=50)
+    mail = models.TextField(max_length=50)
+    phone = models.TextField(max_length=50)
+    fk_team_id = models.BigIntegerField()
+    team_roll = models.TextField(max_length=50)
+
+    class Meta:
+        db_table = 'employee'
+
+
     
