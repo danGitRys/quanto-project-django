@@ -1,16 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import json
-from .models import ExternalTable
-from .models import Assignment
-from .models import Employee
+from ..models import ExternalTable
+from ..models import Assignment
+from ..models import Employee
 from django.db import connection
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 
 # Request-handler
 
 # Create your views here.
-
+@csrf_exempt
 def hello_world(request):
+    print(request.POST)
+    post_data = request.body.decode('utf-8')
+    print(post_data)
     loggedIn = True
     if not loggedIn:
         loggedIn = False
@@ -24,7 +29,12 @@ def hello_world(request):
         print(allObjects)
        # rows = cursor.fetchall()
         #print(rows)
-    return render(request, 'HelloWorld.html', { 'name' : 'Fabi' })
+    data = {
+        'key1': 'value1',
+        'key2': 'value2',
+        # Add more key-value pairs as needed
+    }
+    return JsonResponse(data)
 
 def loginpage(request):
     #bekomme irgendein JSON
