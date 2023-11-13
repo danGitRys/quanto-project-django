@@ -33,6 +33,19 @@ class Employee(models.Model):
 
     class Meta:
         db_table = 'employee'
+    
+    def toJson(self):
+        serialized_data = {
+            'id': self.id,
+            'emp_id': self.emp_id,
+            'forename': self.forename,
+            'surname': self.surname,
+            'mail': self.mail,
+            'phone': self.phone,
+            'fk_team_id': self.fk_team_id,
+            'team_roll': self.team_roll,
+        }
+        return serialized_data
 
 
     
