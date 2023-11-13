@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from ..models import Employee
-@csrf_exempt
+
 def getEmployee(request):
      if request.method == 'GET':
           employeeList = []
