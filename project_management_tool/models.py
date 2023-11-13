@@ -6,9 +6,6 @@ from django.db import models
 # Create your models here.
 
 # TODO implement the Fields of the Database. Maybe rename
-class ExternalTable(models.Model):
-    #field1 = models.CharField(max_length=50)
-    projectName = models.CharField(max_length=50)
 
 class Assignment(models.Model):
     id = models.BigIntegerField(primary_key=True)
@@ -20,6 +17,17 @@ class Assignment(models.Model):
 
     class Meta:
         db_table = 'assignment'
+    
+    def toJson(self):
+        serialized_data = {
+            'id': self.id,
+            'fk_project': self.fk_project,
+            'fk_employee': self.fk_employee,
+            'role': self.role,
+            'sysStartTime': self.sysStartTime,
+            'sysEndTime': self.sysEndTime,
+        }
+        return serialized_data
 
 class Employee(models.Model):
     id = models.BigIntegerField(primary_key=True)
@@ -60,6 +68,18 @@ class Booking(models.Model):
     class Meta:
         db_table = 'booking'
 
+    def toJson(self):
+        serialized_data = {
+            'id': self.id,
+            'fk_employee': self.fk_employee,
+            'fk_position': self.fk_position,
+            'start': self.start.isoformat(),  
+            'end': self.end.isoformat(),
+            'pause': self.pause,
+            'time': self.time,
+        }
+        return serialized_data
+
 class Forecast(models.Model):
     id = models.BigIntegerField(primary_key=True)
     fk_employee = models.BigIntegerField()
@@ -70,6 +90,17 @@ class Forecast(models.Model):
 
     class Meta:
         db_table = 'forecast'
+    
+    def toJson(self):
+        serialized_data = {
+            'id': self.id,
+            'fk_employee': self.fk_employee,
+            'fk_position': self.fk_position,
+            'start': self.start.isoformat(),  
+            'end': self.end.isoformat(),
+            'info': self.info,
+        }
+        return serialized_data
 
 class Positon(models.Model):
     id = models.BigIntegerField(primary_key=True)
@@ -84,6 +115,20 @@ class Positon(models.Model):
 
     class Meta:
         db_table = 'position'
+    
+    def toJson(self):
+        serialized_data = {
+            'id': self.id,
+            'position_id': self.position_id,
+            'fk_project': self.fk_project,
+            'rate': self.rate,
+            'wd': self.wd,
+            'volume_total': self.volume_total,
+            'volume_remaining': self.volume_remaining,
+            'start_date': self.start_date.isoformat(),  
+            'end_date': self.end_date.isoformat(),
+        }
+        return serialized_data
 
 class Project(models.Model):
     id = models.BigIntegerField(primary_key=True)
@@ -98,6 +143,19 @@ class Project(models.Model):
     class Meta:
         db_table = 'project'
     
+    def toJson(self):
+        serialized_data = {
+            'id': self.id,
+            'p_id': self.p_id,
+            'name': self.name,
+            'company': self.company,
+            'start_date': self.start_date.isoformat(), 
+            'end_date': self.end_date.isoformat(),
+            'fk_creator': self.fk_creator,
+            'creation_date': self.creation_date.isoformat(),
+        }
+        return serialized_data
+    
 
 class Team(models.Model):
     id = models.BigIntegerField(primary_key=True)
@@ -105,4 +163,12 @@ class Team(models.Model):
     info = models.TextField()
 
     class Meta:
-        db_table = 'team' 
+        db_table = 'team'
+
+    def toJson(self):
+        serialized_data = {
+            'id': self.id,
+            'name': self.name,
+            'info': self.info,
+        }
+        return serialized_data 
