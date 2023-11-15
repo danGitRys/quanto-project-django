@@ -2,8 +2,12 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from ..models import Employee
+from ..jsonValidator import validator
+import json
 
+@csrf_exempt
 def getEmployee(request):
+     print(request.body)
      if request.method == 'GET':
           employeeList = []
           allEmployees = Employee.objects.all()
@@ -16,10 +20,18 @@ def getEmployee(request):
           print(employeeList)
           
           return JsonResponse(data)
-     else:
+     elif request.method == 'POST':
           data = {
+               "type":"Post"
+          }
+          print(validator.login(json.loads(request.body)))
+        
+     
+     else:
+           data = {
                "type":"else"
           }
-          return JsonResponse(data)
+
+     return JsonResponse(data)
           
 
