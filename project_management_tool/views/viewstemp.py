@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import json
-from ..models import ExternalTable
+
 from ..models import Assignment
 from ..models import Employee
 from django.db import connection
@@ -47,7 +47,5 @@ def loginpage(request):
 def api(request):
     return HttpResponse("API")
 
-# TODO implement views
-def my_view(request):
-    objects = ExternalTable.objects.all()
+
     ...
