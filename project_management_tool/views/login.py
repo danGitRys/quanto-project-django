@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from ..jsonValidator import validator
+from ..jsonTemplate import *
 import json
 @csrf_exempt
 
@@ -20,9 +21,7 @@ def login(request):
     
 
     else:
-        data = {
-               "Error":"Unsupported Request Type"
-          }
+        data = invalidMethod
     
     return JsonResponse(data)
 
