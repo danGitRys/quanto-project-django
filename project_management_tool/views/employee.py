@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from ..models import Employee
 from ..jsonValidator import validator
 import json
+from ..jsonTemplate import *
 
 @csrf_exempt
 def getEmployee(request):
@@ -21,10 +22,7 @@ def getEmployee(request):
           
           return JsonResponse(data)
      elif request.method == 'POST':
-          data = {
-               "type":"Post"
-          }
-          print(validator.login(json.loads(request.body)))
+          data = invalidMethod
         
      
      else:
